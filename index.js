@@ -28,8 +28,3 @@ app.listen(PORT, async () => {
     await connection()
     console.log(`port is listening on ${PORT}`)
 })
-
-
-
-
-
