@@ -75,23 +75,6 @@ router.get("/category", async (req, res) => {
     }
 });
 
-router.get("/category", async (req, res) => {
-    try {
-        const { category } = req.query;
-
-        if (!category) {
-            return res.status(400).json({ message: "Title parameter is required for search." });
-        }
-
-        const matchingBlogs = await Blogs.find({ category: { $regex: category, $options: 'i' } });
-
-        return res.status(200).json(matchingBlogs);
-    } catch (error) {
-        console.error("Error searching for blogs:", error);
-        res.status(500).json("Internal Server Error");
-    }
-});
-
 router.get("/date", async (req, res) => {
     try {
         const { sort, order } = req.query;

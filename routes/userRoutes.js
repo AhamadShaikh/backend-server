@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
 })
 
 router.post("/login", async (req, res) => {
-    const { username,email, password } = req.body
+    const { username, email, password } = req.body
     try {
 
         const user = await User.findOne({ email })
@@ -40,9 +40,9 @@ router.post("/login", async (req, res) => {
             return res.status(400).json("Wrong Credentials")
         }
 
-        const token = jwt.sign({ userId: user._id, email: user.email,name:user.name }, "ironman", { expiresIn: "3d" })
+        const token = jwt.sign({ userId: user._id, email: user.email, name: user.name }, "ironman", { expiresIn: "3d" })
 
-        const rToken = jwt.sign({  userId: user._id, email: user.email,name:user.name }, "thanos", { expiresIn: "5d" })
+        const rToken = jwt.sign({ userId: user._id, email: user.email, name: user.name }, "thanos", { expiresIn: "5d" })
 
         return res.status(200).json({ msg: "User Login Successfully", token: token, refreshToken: rToken })
 
