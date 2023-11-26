@@ -14,7 +14,7 @@ router.post("/create", middleware, async (req, res) => {
 
         // Create a new blog using the Blogs model
         const newBlog = await Blogs.create({
-            ...req.body, date: new Date().toISOString(), likes: userId, creater: userId
+            ...req.body, date: new Date().toISOString(), creater: userId
         });
 
         return res.status(200).json({ msg: "Blog Created", blog: newBlog });
@@ -26,12 +26,6 @@ router.post("/create", middleware, async (req, res) => {
 
 router.get("/", middleware, async (req, res) => {
     try {
-        // Assuming the user information is available in the request
-        // const { username, title, content, category, date } = req.body;
-        // console.log(req.name)
-        // const userId = req.userId;
-
-        // Create a new blog using the Blogs model
         const allBlogs = await Blogs.find({})
 
         return res.status(200).json(allBlogs);
